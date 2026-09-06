@@ -1,0 +1,33 @@
+{
+    "name": "hexlet/code",
+    "description": "Page Analyzer — checks pages for SEO readiness",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "slim/slim": "^4.14",
+        "slim/psr7": "^1.7",
+        "slim/flash": "^0.4.0",
+        "slim/php-view": "^3.4",
+        "php-di/php-di": "^7.0",
+        "vlucas/valitron": "^1.4",
+        "guzzlehttp/guzzle": "^7.9",
+        "symfony/dom-crawler": "^7.1",
+        "symfony/css-selector": "^7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        },
+        "files": [
+            "src/View/helpers.php"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "require-dev": {
+        "carthage-software/mago": "^1.47"
+    }
+}

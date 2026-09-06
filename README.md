@@ -1,38 +1,49 @@
 # Анализатор страниц (PHP)
 
-[![hexlet-check](https://github.com/mikitasazan/php-project-9/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/mikitasazan/php-project-9/actions)
+[![hexlet-check](https://github.com/mikitasazan/php-project-9/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/mikitasazan/php-project-9/actions/workflows/hexlet-check.yml)
 
-Создадите полноценное веб-приложение, которое выполняет запросы по сети и сохраняет данные в базу данных. Настроите CI и выполните деплой.
+Сайт, который принимает адрес страницы и проверяет её на пригодность для
+поисковой оптимизации: отвечает ли сервер, что стоит в заголовке `h1`, в
+`title` и в описании страницы. Каждая проверка сохраняется, поэтому видно, как
+страница менялась со временем.
 
-Учебный проект Хекслета: https://ru.hexlet.io/programs/php
-Как это должно работать: https://files.hexlet.app/a/tefi04
+## Требования
 
-## Стек
-
-- PHP
+- PHP 8.2 или новее
+- Composer
+- PostgreSQL
 
 ## Установка
-
-<!-- Опишите установку: клонирование, зависимости, переменные окружения -->
 
 ```bash
 git clone https://github.com/mikitasazan/php-project-9.git
 cd php-project-9
+make setup
 ```
 
-## Использование
+Адрес базы задаётся переменной `DATABASE_URL`, например
+`postgres://user:password@localhost:5432/page_analyzer`. Таблицы создаются
+командой:
 
-<!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
+```bash
+make migrate
+```
 
----
+## Запуск
 
-<details>
-<summary>Автоматические тесты Хекслета</summary>
+```bash
+make start          # http://localhost:8000
+make start PORT=80  # на другом порту
+```
 
-Тесты запускаются на каждый коммит. За запуск отвечает файл `.github/workflows/hexlet-check.yml` — не удаляйте и не переименовывайте ни его, ни репозиторий.
+## Разработка
 
-</details>
+```bash
+make lint   # проверка стиля и статический анализ
+```
 
-## О Хекслете
+## Развёртывание
 
-[Хекслет](https://ru.hexlet.io/) — школа программирования: авторские программы обучения с практикой, поддержкой наставников и реальными проектами, которые остаются в резюме. Этот репозиторий — один из таких проектов.
+В репозитории лежит `Dockerfile`, готовый для Render.com: он ставит
+зависимости, собирает автозагрузку и поднимает приложение на порту из
+переменной `PORT`. Сам сервис пока не развёрнут.

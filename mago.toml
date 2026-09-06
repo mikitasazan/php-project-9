@@ -1,0 +1,20 @@
+version = "1"
+php-version = "8.3"
+
+[source]
+paths = ["src", "public"]
+includes = ["vendor"]
+
+# Hexlet code uses camelCase for functions; the linter defaults to underscores.
+[linter.rules.function-name]
+camel = true
+
+# A check row carries six columns; splitting the constructor would only move
+# the same fields behind another object.
+[linter.rules.excessive-parameter-list]
+enabled = false
+
+# Route closures wire request to response in one place on purpose; the metric
+# reads that as complexity.
+[linter.rules.halstead]
+enabled = false

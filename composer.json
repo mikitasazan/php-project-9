@@ -28,6 +28,7 @@
     },
     "minimum-stability": "stable",
     "require-dev": {
-        "carthage-software/mago": "^1.47"
+        "carthage-software/mago": "^1.47",
+        "squizlabs/php_codesniffer": "^4.0"
     }
 }

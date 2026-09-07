@@ -16,7 +16,8 @@ class SiteCheckRepository
     public function create(SiteCheck $check): SiteCheck
     {
         $createdAt = date('Y-m-d H:i:s');
-        $statement = $this->connection->prepare('INSERT INTO url_checks (url_id, status_code, h1, title, description, created_at)
+        $statement = $this->connection->prepare('INSERT INTO url_checks
+                (url_id, status_code, h1, title, description, created_at)
              VALUES (:url_id, :status_code, :h1, :title, :description, :created_at)
              RETURNING id');
         $statement->execute([

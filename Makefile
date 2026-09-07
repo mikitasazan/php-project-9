@@ -16,7 +16,9 @@ start:
 lint:
 	./vendor/bin/mago format --dry-run
 	./vendor/bin/mago lint
+	./vendor/bin/phpcs
 
 lint-fix:
 	./vendor/bin/mago format
 	./vendor/bin/mago lint --fix
+	./vendor/bin/phpcbf || true

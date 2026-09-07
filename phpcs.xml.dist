@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<ruleset name="page-analyzer">
+    <description>PSR-12, minus the few sniffs that fight mago's own formatting choices (mago.toml already documents those).</description>
+
+    <arg name="basepath" value="."/>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+
+    <file>src</file>
+    <file>public</file>
+
+    <rule ref="PSR12">
+        <!-- mago always puts an empty constructor body's `}` right next to
+             `)`; this sniff wants it on its own line instead. -->
+        <exclude name="Squiz.WhiteSpace.ScopeClosingBrace.ContentBefore"/>
+        <!-- mago keeps a short parameter list on one line even when a
+             trailing `use (...)` clause wraps below it; this sniff wants
+             every parameter on its own line the moment any part wraps. -->
+        <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.OneParamPerLine"/>
+        <!-- routes.php's closure docblock documents the returned closure,
+             not the file; this sniff misreads it as a misplaced file
+             header. -->
+        <exclude name="PSR12.Files.FileHeader.IncorrectOrder"/>
+        <exclude name="PSR12.Files.FileHeader.SpacingAfterDocblockBlock"/>
+    </rule>
+</ruleset>

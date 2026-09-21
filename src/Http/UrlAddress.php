@@ -8,8 +8,10 @@ use Valitron\Validator;
 
 /**
  * Validates a submitted address and reduces it to the part we actually
- * store: scheme + host, lower-cased. Two pages on the same host are the
- * same tracked site, whatever path or query the visitor typed.
+ * store: scheme + host[:port], lower-cased. Two pages on the same host are
+ * the same tracked site, whatever path or query the visitor typed. An
+ * explicit port stays, otherwise checks of http://host:8080 would be sent
+ * to port 80 and could never connect.
  */
 class UrlAddress
 {
@@ -38,6 +40,11 @@ class UrlAddress
     {
         $scheme = strtolower((string) parse_url($raw, PHP_URL_SCHEME));
         $host = strtolower((string) parse_url($raw, PHP_URL_HOST));
+        $port = parse_url($raw, PHP_URL_PORT);
+
+        if (is_int($port)) {
+            return "{$scheme}://{$host}:{$port}";
+        }
 
         return "{$scheme}://{$host}";
     }
